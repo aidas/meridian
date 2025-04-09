@@ -1,8 +1,7 @@
 name: Deploy services
-on:
-  push:
-    branches:
-      - main
+
+on: workflow_dispatch
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
