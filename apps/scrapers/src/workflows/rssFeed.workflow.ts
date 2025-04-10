@@ -34,9 +34,6 @@ export class ScrapeRssFeed extends WorkflowEntrypoint<Env, Params> {
       const db = getDb(this.env.DATABASE_URL);
       console.log('[ScrapeRssFeed] Database connection initialized');
 
-      await db.execute(`SELECT 1 as test`);
-      console.log('[ScrapeRssFeed] Database connection verified');
-
       // Fetch all sources
       console.log('[ScrapeRssFeed] Fetching feeds from database');
       const feeds = await step.do('get feeds', dbStepConfig, async () => {
