@@ -21,7 +21,7 @@ export default {
   fetch: app.fetch,
   async scheduled({ cron }: ScheduledController, env: Env, ctx: ExecutionContext) {
     // - Every hour (at minute 4): trigger scrapping of RSS feeds
-    if (cron === '4 * * * *') {
+    if (cron === '4,45 * * * *') {
       await env.SCRAPE_RSS_FEED.create({ id: crypto.randomUUID() });
       console.log('Starting RSS feed scraping...');
       return;
