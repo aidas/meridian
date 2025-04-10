@@ -19,7 +19,7 @@ const tierIntervals = {
 
 const dbStepConfig: WorkflowStepConfig = {
   retries: { limit: 3, delay: '1 second', backoff: 'linear' },
-  timeout: '5 seconds',
+  timeout: '10 seconds',
 };
 
 // Takes in a rss feed URL, parses the feed & stores the data in our database.
@@ -33,6 +33,9 @@ export class ScrapeRssFeed extends WorkflowEntrypoint<Env, Params> {
     try {
       const db = getDb(this.env.DATABASE_URL);
       console.log('[ScrapeRssFeed] Database connection initialized');
+
+      await db.execute(`SELECT 1 as test`);
+      console.log('[ScrapeRssFeed] Database connection verified');
 
       // Fetch all sources
       console.log('[ScrapeRssFeed] Fetching feeds from database');
